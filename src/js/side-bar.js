@@ -57,7 +57,7 @@ function handleProjectFormSubmit(event, nameField, favoriteField, counter, proje
     event.preventDefault();
 
     const projectName = nameField.value;
-    const projectFavorite = favoriteField.checked;
+    const projectFavorite = favoriteField.checked;  // Verificăm dacă checkbox-ul este bifat
 
     if (projectName) {
         const newProject = createProject(projectName, projectFavorite);
@@ -66,7 +66,7 @@ function handleProjectFormSubmit(event, nameField, favoriteField, counter, proje
         // Salvăm proiectele în localStorage
         saveProjectsToLocalStorage(projects);
 
-        renderProjects(projects, sideBarBottom, mainContentBottom, mainContentTop);
+        renderProjects(projects, sideBarBottom, mainContentBottom, mainContentTop); // Re-render cu proiectele actualizate
     }
 
     counter.resetCounter();
@@ -77,8 +77,14 @@ function renderProjects(projects, sideBarBottom, mainContentBottom, mainContentT
 
     projects.forEach((project, index) => {
         const projectContainer = createDOMElement('div', '', '');
+
         const projectTitle = createDOMElement('h1', '', project.getName());
         const deleteButton = createDOMElement('button', '', 'X');
+
+        // Verificăm dacă proiectul este favorit și aplicăm border roșu
+        if (project.getFavorite()) {
+            projectContainer.style.border = '2px solid red'; // Border roșu pentru proiectele favorite
+        }
 
         restAppend(projectContainer, projectTitle, deleteButton);
         sideBarBottom.appendChild(projectContainer);

@@ -69,7 +69,7 @@
   }
   
   .side-bar{
-    width: 25%;
+    min-width: 35%;
     height: 95%;
   }
   
@@ -175,5 +175,116 @@
   
   
   .side-bar-bottom > div > h1 {
-    color: var(--font-color)
+    color: var(--font-color);
+    font-size: 1rem
+    
   }
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  #app {
+      flex-direction: column;
+      gap: 0;
+      justify-content: flex-start;
+  }
+
+  .main-content, .side-bar {
+      width: 100%;
+      height: 50%; /* Jumătate pentru sidebar și jumătate pentru content */
+      flex-direction: column;
+  }
+
+  .main-content-bottom, .side-bar-bottom {
+      height: auto;
+      padding: var(--general-padding);
+      overflow-y: auto; /* Inner scrolling */
+  }
+
+  button {
+      width: 100%;
+      height: auto;
+  }
+
+  .side-bar-top, .main-content-top {
+      height: auto;
+      padding: 10px;
+      margin-bottom: 10px; /* Added margin to space buttons */
+  }
+
+  /* Margin between filter and add buttons */
+  .side-bar-top > button, 
+  .main-content-top > button {
+      margin: 0.5em; /* Margine între butoane */
+      width: 100%; /* Full width pentru telefoane */
+  }
+
+  /* Max-width for form buttons */
+  .side-bar-bottom > div > form button, 
+  .main-content-bottom > div > form button {
+      max-width: 200px;
+      width: 100%; /* Full width */
+  }
+
+  /* Dimensiunea mai mică pentru fonturi */
+  h1, p, button {
+      font-size: 0.9rem; /* Text mai mic */
+  }
+
+  .side-bar-bottom > div > p, 
+  .main-content-bottom > div > p {
+      font-size: 1rem; /* Mai mic pentru taskuri și proiecte */
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+      --button-width: 8em;
+      --heading-font-size: 1.2rem;
+      --item-height: 3em;
+  }
+  form input, form select {
+    width: 5rem;
+  }
+  #app {
+      justify-content: flex-start; /* Nu mai este pe centru */
+  }
+
+  button {
+      height: 2.5em;
+      font-size: 0.6rem;
+      
+  }
+
+  .side-bar-top > h1, .main-content-top > h1 {
+      font-size: var(--heading-font-size);
+  }
+
+  .side-bar-bottom > div, 
+  .main-content-bottom > div {
+      height: var(--item-height);
+  }
+
+  .side-bar-bottom > div > p, 
+  .main-content-bottom > div > p {
+      font-size: 0.9rem; /* Mai mic pe ecrane foarte mici */
+  }
+
+  /* Max-width for form buttons on smaller screens */
+  .side-bar-bottom > div > form button, 
+  .main-content-bottom > div > form button {
+      max-width: 150px;
+      
+  }
+ 
+  /* Margin between filter and add buttons on small screens */
+  .side-bar-top > button, 
+  .main-content-top > button {
+      margin: 0.3em;
+      width: 100%; /* Full width pentru butoane */
+  }
+
+  .main-content-bottom, 
+  .side-bar-bottom {
+      overflow-y: auto; /* Inner scrolling */
+  }
+}
